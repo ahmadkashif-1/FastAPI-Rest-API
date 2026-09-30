@@ -28,37 +28,37 @@ Meridian is a practice project that brings a FastAPI REST API together with a re
 
 ### Interface preview
 
-The browser app is served by the API at `/ui`. It includes latest research, discovery and search, publishing, a researcher profile, preferences, and an assistant view. The interface uses plain HTML, CSS, and JavaScript—no frontend build step is required. The screenshots below were captured from the running local app; identifying author emails have been replaced with generic labels.
+The browser app is served by the API at `/ui`. It includes latest research, discovery and search, publishing, a researcher profile, preferences, and an assistant view. The interface uses plain HTML, CSS, and JavaScript—no frontend build step is required. The screenshots below were captured from the running local app; identifying author emails have been replaced with generic labels. Each preview is cropped to focus on the feature being described; click it to open the full-page screenshot.
 
 #### 1. Latest research
 
 The home screen highlights featured work, recent publications, and research disciplines to explore.
 
-![Latest research home screen](docs/screenshots/01-latest-research.png)
+<p align="center"><a href="docs/screenshots/01-latest-research.png"><img src="docs/screenshots/01-latest-research-preview.png" alt="Latest research home screen, focused on the featured publication" width="720"></a></p>
 
 #### 2. Discover and search
 
 The discovery view provides a searchable archive with topic, researcher, and publication-ID queries, plus a discipline filter. Each result shows a short preview and a link to open the full post.
 
-![Research discovery and search screen](docs/screenshots/02-discover-research.png)
+<p align="center"><a href="docs/screenshots/02-discover-research.png"><img src="docs/screenshots/02-discover-research-preview.png" alt="Research discovery search controls and results" width="720"></a></p>
 
 #### 3. Publish work
 
 Authenticated researchers can write a post with a title and Markdown-supported manuscript, then publish it to the shared archive.
 
-![Research publication form](docs/screenshots/03-publish-research.png)
+<p align="center"><a href="docs/screenshots/03-publish-research.png"><img src="docs/screenshots/03-publish-research-preview.png" alt="Research publication editor and publish button" width="720"></a></p>
 
 #### 4. Research assistant
 
 The assistant view provides a chat interface for research questions and synthesis. When configured, the API sends the question, the signed-in account email, and up to the researcher's five most recent publications (up to 500 characters of each post's content) to Google Gemini. Do not enable the integration with data you are not comfortable sending to that external service.
 
-![Research assistant interface](docs/screenshots/04-research-assistant.png)
+<p align="center"><a href="docs/screenshots/04-research-assistant.png"><img src="docs/screenshots/04-research-assistant-preview.png" alt="Research assistant chat panel" width="720"></a></p>
 
 #### 5. Workspace settings
 
 Researchers can select an appearance and reading density. These preferences are saved in the current browser and do not change other users' views. The page also explains the assistant's account and publication context.
 
-![Workspace appearance, density, and assistant settings](docs/screenshots/05-workspace-settings.png)
+<p align="center"><a href="docs/screenshots/05-workspace-settings.png"><img src="docs/screenshots/05-workspace-settings-preview.png" alt="Workspace appearance, reading density, and assistant context settings" width="720"></a></p>
 
 ## How SQLAlchemy is used
 
@@ -103,7 +103,7 @@ FastAPI-Rest-API/
 │       ├── app.js              # Frontend behavior
 │       └── styles.css          # Responsive styling
 ├── docs/
-│   └── screenshots/            # Captures of the running web interface
+│   └── screenshots/            # Full captures and focused README previews
 ├── .env.example                # Safe local configuration template
 ├── .gitignore
 ├── README.md
