@@ -28,7 +28,50 @@ Meridian is a practice project that brings a FastAPI REST API together with a re
 
 ### Interface preview
 
-The browser app is served by the API at `/ui`. It includes latest research, discovery and search, publishing, a researcher profile, preferences, and an assistant view. The interface uses plain HTML, CSS, and JavaScript—no frontend build step is required.
+The browser app is served by the API at `/ui`. It includes latest research, discovery and search, publishing, a researcher profile, preferences, and an assistant view. The interface uses plain HTML, CSS, and JavaScript—no frontend build step is required. The screenshots below were captured from the running local app; identifying author emails have been replaced with generic labels.
+
+#### 1. Latest research
+
+The home screen highlights featured work, recent publications, and research disciplines to explore.
+
+![Latest research home screen](docs/screenshots/01-latest-research.png)
+
+#### 2. Discover and search
+
+The discovery view provides a searchable archive with topic, researcher, and publication-ID queries, plus a discipline filter. Each result shows a short preview and a link to open the full post.
+
+![Research discovery and search screen](docs/screenshots/02-discover-research.png)
+
+#### 3. Publish work
+
+Authenticated researchers can write a post with a title and Markdown-supported manuscript, then publish it to the shared archive.
+
+![Research publication form](docs/screenshots/03-publish-research.png)
+
+#### 4. Research assistant
+
+The assistant view provides a chat interface for research questions and synthesis. When configured, the API sends the question, the signed-in account email, and up to the researcher's five most recent publications (up to 500 characters of each post's content) to Google Gemini. Do not enable the integration with data you are not comfortable sending to that external service.
+
+![Research assistant interface](docs/screenshots/04-research-assistant.png)
+
+#### 5. Workspace settings
+
+Researchers can select an appearance and reading density. These preferences are saved in the current browser and do not change other users' views. The page also explains the assistant's account and publication context.
+
+![Workspace appearance, density, and assistant settings](docs/screenshots/05-workspace-settings.png)
+
+## How SQLAlchemy is used
+
+SQLAlchemy is the application's ORM layer between the FastAPI routes and PostgreSQL:
+
+- **Engine and session factory:** `app/database.py` reads the database URL from `app/pass.env`, creates a SQLAlchemy engine, and binds `SessionLocal` to it.
+- **Request-scoped sessions:** Routes request a `Session` through FastAPI's `Depends(get_db)`. The dependency yields a session for the request and closes it in a `finally` block.
+- **Mapped tables:** `app/models.py` declares `User` and `Post` ORM models. Their columns define the `users` and `posts` tables, including the post-to-user foreign key.
+- **Queries and writes:** The post routes use ORM queries to list and filter records. Creating a post adds a `Post` object, commits the transaction, and refreshes it to load database-generated values. Updates and deletes are scoped to the signed-in owner's ID and committed to the database.
+- **Startup table creation:** `app/main.py` calls `Base.metadata.create_all(bind=engine)` to create mapped tables that do not yet exist. The PostgreSQL database itself must already exist; this `create_all` call is not a schema migration system.
+- **API validation stays separate:** Pydantic schemas in `app/schema.py` validate request bodies and shape API responses; the SQLAlchemy models represent persisted database rows.
+
+For example, the ORM model describes a post, and a route persists one with `db.add(new_post)` followed by `db.commit()`. This project uses SQLAlchemy sessions and mapped models directly rather than writing raw SQL for its normal CRUD routes.
 
 ## Built with
 
@@ -37,7 +80,7 @@ The browser app is served by the API at `/ui`. It includes latest research, disc
 - **Authentication:** Password hashing and JWT bearer tokens
 - **Frontend:** HTML, CSS, and vanilla JavaScript
 - **Optional AI:** Google Gemini API
-- **API testing:** FastAPI interactive docs and the included Postman collection
+- **API testing:** FastAPI interactive Swagger docs and ReDoc
 
 ## Project layout
 
@@ -59,7 +102,8 @@ FastAPI-Rest-API/
 │       ├── index.html          # Meridian web interface
 │       ├── app.js              # Frontend behavior
 │       └── styles.css          # Responsive styling
-├── postman/                    # Postman collection and environment
+├── docs/
+│   └── screenshots/            # Captures of the running web interface
 ├── .env.example                # Safe local configuration template
 ├── .gitignore
 ├── README.md
@@ -177,9 +221,9 @@ curl -X POST http://127.0.0.1:8000/posts/ \
   -d '{"title":"A research question","content":"Notes and findings go here.","published":true}'
 ```
 
-## Test with Postman
+## Try the API
 
-The existing Postman workspace files are included under `postman/`. Some saved requests still need their URL, HTTP method, or authentication configured, so use the interactive `/docs` page for ready-to-run API requests.
+Use the interactive Swagger page at <http://127.0.0.1:8000/docs> to inspect endpoints and send requests, or open ReDoc at <http://127.0.0.1:8000/redoc> for the generated API reference.
 
 ## Configuration notes
 
