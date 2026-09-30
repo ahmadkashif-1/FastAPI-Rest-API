@@ -34,31 +34,31 @@ The browser app is served by the API at `/ui`. It includes latest research, disc
 
 The home screen highlights featured work, recent publications, and research disciplines to explore.
 
-<p align="center"><img src="assets/screenshots/01-latest-research.png" alt="Featured research post on the home screen" width="520"></p>
+<p align="center"><img src="01-latest-research.png" alt="Featured research post on the home screen" width="520"></p>
 
 #### 2. Discover and search
 
 The discovery view provides a searchable archive with topic, researcher, and publication-ID queries, plus a discipline filter. Each result shows a short preview and a link to open the full post.
 
-<p align="center"><img src="assets/screenshots/02-discover-search.png" alt="Research discovery search controls and a matching publication" width="520"></p>
+<p align="center"><img src="02-discover-search.png" alt="Research discovery search controls and a matching publication" width="520"></p>
 
 #### 3. Publish work
 
 Authenticated researchers can write a post with a title and Markdown-supported manuscript, then publish it to the shared archive.
 
-<p align="center"><img src="assets/screenshots/03-publish-work.png" alt="Title and manuscript fields in the publishing form" width="520"></p>
+<p align="center"><img src="03-publish-work.png" alt="Title and manuscript fields in the publishing form" width="520"></p>
 
 #### 4. Research assistant
 
 The assistant view provides a chat interface for research questions and synthesis. When configured, the API sends the question, the signed-in account email, and up to the researcher's five most recent publications (up to 500 characters of each post's content) to Google Gemini. Do not enable the integration with data you are not comfortable sending to that external service.
 
-<p align="center"><img src="assets/screenshots/04-research-assistant.png" alt="Research assistant welcome message and chat input" width="520"></p>
+<p align="center"><img src="04-research-assistant.png" alt="Research assistant welcome message and chat input" width="520"></p>
 
 #### 5. Workspace settings
 
 Researchers can select an appearance and reading density. These preferences are saved in the current browser and do not change other users' views.
 
-<p align="center"><img src="assets/screenshots/05-workspace-settings.png" alt="Workspace appearance and reading density controls" width="520"></p>
+<p align="center"><img src="05-workspace-settings.png" alt="Workspace appearance and reading density controls" width="520"></p>
 
 ## How SQLAlchemy is used
 
@@ -102,8 +102,11 @@ FastAPI-Rest-API/
 │       ├── index.html          # Meridian web interface
 │       ├── app.js              # Frontend behavior
 │       └── styles.css          # Responsive styling
-├── assets/
-│   └── screenshots/            # Cropped interface images embedded in this README
+├── 01-latest-research.png      # README screenshot: latest research
+├── 02-discover-search.png      # README screenshot: discovery
+├── 03-publish-work.png         # README screenshot: publishing
+├── 04-research-assistant.png   # README screenshot: assistant
+├── 05-workspace-settings.png   # README screenshot: preferences
 ├── .env.example                # Safe local configuration template
 ├── .gitignore
 ├── README.md
