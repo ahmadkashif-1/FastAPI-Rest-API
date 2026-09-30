@@ -28,37 +28,37 @@ Meridian is a practice project that brings a FastAPI REST API together with a re
 
 ### Interface preview
 
-The browser app is served by the API at `/ui`. It includes latest research, discovery and search, publishing, a researcher profile, preferences, and an assistant view. The interface uses plain HTML, CSS, and JavaScript—no frontend build step is required. The screenshots below were captured from the running local app; identifying author emails have been replaced with generic labels. Each preview is cropped to focus on the feature being described; click it to open the full-page screenshot.
+The browser app is served by the API at `/ui`. It includes latest research, discovery and search, publishing, a researcher profile, preferences, and an assistant view. The interface uses plain HTML, CSS, and JavaScript—no frontend build step is required. The images below are focused crops captured from the running local app; identifying author emails have been replaced with generic labels.
 
 #### 1. Latest research
 
 The home screen highlights featured work, recent publications, and research disciplines to explore.
 
-<p align="center"><a href="docs/screenshots/01-latest-research.png"><img src="docs/screenshots/01-latest-research-preview.png" alt="Latest research home screen, focused on the featured publication" width="720"></a></p>
+<p align="center"><img src="assets/screenshots/01-latest-research.png" alt="Featured research post on the home screen" width="600"></p>
 
 #### 2. Discover and search
 
 The discovery view provides a searchable archive with topic, researcher, and publication-ID queries, plus a discipline filter. Each result shows a short preview and a link to open the full post.
 
-<p align="center"><a href="docs/screenshots/02-discover-research.png"><img src="docs/screenshots/02-discover-research-preview.png" alt="Research discovery search controls and results" width="720"></a></p>
+<p align="center"><img src="assets/screenshots/02-discover-search.png" alt="Research discovery search controls and a matching publication" width="600"></p>
 
 #### 3. Publish work
 
 Authenticated researchers can write a post with a title and Markdown-supported manuscript, then publish it to the shared archive.
 
-<p align="center"><a href="docs/screenshots/03-publish-research.png"><img src="docs/screenshots/03-publish-research-preview.png" alt="Research publication editor and publish button" width="720"></a></p>
+<p align="center"><img src="assets/screenshots/03-publish-work.png" alt="Research title and manuscript editor with publish action" width="600"></p>
 
 #### 4. Research assistant
 
 The assistant view provides a chat interface for research questions and synthesis. When configured, the API sends the question, the signed-in account email, and up to the researcher's five most recent publications (up to 500 characters of each post's content) to Google Gemini. Do not enable the integration with data you are not comfortable sending to that external service.
 
-<p align="center"><a href="docs/screenshots/04-research-assistant.png"><img src="docs/screenshots/04-research-assistant-preview.png" alt="Research assistant chat panel" width="720"></a></p>
+<p align="center"><img src="assets/screenshots/04-research-assistant.png" alt="Research assistant welcome message and chat input" width="600"></p>
 
 #### 5. Workspace settings
 
-Researchers can select an appearance and reading density. These preferences are saved in the current browser and do not change other users' views. The page also explains the assistant's account and publication context.
+Researchers can select an appearance and reading density. These preferences are saved in the current browser and do not change other users' views.
 
-<p align="center"><a href="docs/screenshots/05-workspace-settings.png"><img src="docs/screenshots/05-workspace-settings-preview.png" alt="Workspace appearance, reading density, and assistant context settings" width="720"></a></p>
+<p align="center"><img src="assets/screenshots/05-workspace-settings.png" alt="Workspace appearance and reading density controls" width="600"></p>
 
 ## How SQLAlchemy is used
 
@@ -102,8 +102,8 @@ FastAPI-Rest-API/
 │       ├── index.html          # Meridian web interface
 │       ├── app.js              # Frontend behavior
 │       └── styles.css          # Responsive styling
-├── docs/
-│   └── screenshots/            # Full captures and focused README previews
+├── assets/
+│   └── screenshots/            # Cropped interface images embedded in this README
 ├── .env.example                # Safe local configuration template
 ├── .gitignore
 ├── README.md
